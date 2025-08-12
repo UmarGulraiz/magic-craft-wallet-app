@@ -23,15 +23,12 @@ import { openInTab } from "app/helpers";
 import { useSetMetaMaskCompatibleMode } from "app/hooks/web3Mode";
 import Tooltip from "app/components/elements/Tooltip";
 import TooltipIcon from "app/components/elements/TooltipIcon";
-import { ReactComponent as MetamaskIcon } from "app/icons/metamask.svg";
-import { ReactComponent as MetamaskEnabledIcon } from "app/icons/metamask-enabled.svg";
 import { ReactComponent as ConnectIcon } from "app/icons/connect.svg";
 import { ReactComponent as ArrowRightIcon } from "app/icons/arrow-right.svg";
 import Button from "app/components/elements/Button";
 import Switcher from "app/components/elements/Switcher";
-import Avatar from "app/components/elements/Avatar";
 
-const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
+const InteractionWithDapp: FC<{ className?: string }> = ({}) => {
   const activeTab = useAtomValue(activeTabAtom);
   const tabOrigin = getTabOrigin(activeTab);
   const purePermission = useAtomValue(getPermissionAtom(tabOrigin));
@@ -155,81 +152,7 @@ const InteractionWithDapp: FC<{ className?: string }> = ({ className }) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <div
-          className={classNames(
-            "flex items-center cursor-pointer group",
-            "max-w-[47.5%]",
-            className,
-          )}
-        >
-          <div
-            className={classNames(
-              "flex items-center",
-              "min-w-0 grow",
-              "text-xs leading-none",
-              "border-2",
-              "rounded-3xl",
-              "transition-colors",
-              "bg-white/[.16] group-hover:bg-white/[.32]",
-              accountConnected ? "border-brand-redone" : "border-transparent",
-              urlDisplayed ? " py-1 pl-1.5 pr-2" : "p-[0.375rem]",
-            )}
-          >
-            {urlDisplayed && tabOrigin ? (
-              <span className="flex items-center gap-1.5 text-xs text-white leading-4  max-w-full">
-                <div className="relative">
-                  {accountConnected ? (
-                    <Avatar
-                      src={activeTab?.favIconUrl}
-                      alt={permission?.origin}
-                      className={classNames(
-                        "w-5 h-5 object-cover",
-                        "!border-none",
-                      )}
-                    />
-                  ) : (
-                    <ConnectIcon className="w-5 h-5" />
-                  )}
-
-                  <div
-                    className={classNames(
-                      "absolute top-0 -right-1 border",
-                      accountConnected
-                        ? "bg-brand-redone"
-                        : "bg-[#DFE5E0] border border-[#92BC78]",
-                      "w-2 min-w-[.375rem] h-2 rounded-full",
-                    )}
-                  />
-                </div>
-                <span className="truncate min-w-0">
-                  {accountConnected ? new URL(tabOrigin).host : "Not connected"}
-                </span>
-              </span>
-            ) : (
-              <ConnectIcon />
-            )}
-          </div>
-          <span
-            className={classNames(
-              "flex items-center",
-              "p-1.5",
-              "border-2",
-              "rounded-full",
-              "transition-colors",
-              "bg-white/[.16] group-hover:bg-white/[.32]",
-              "ml-2",
-              metamaskModeEnabled
-                ? "border-brand-redone"
-                : "border-transparent",
-            )}
-          >
-            {metamaskModeEnabled ? (
-              <MetamaskEnabledIcon className="w-4 min-w-4 h-auto" />
-            ) : (
-              <MetamaskIcon className="w-4 min-w-4 h-auto" />
-            )}
-          </span>
-        </div>
+        <></>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
