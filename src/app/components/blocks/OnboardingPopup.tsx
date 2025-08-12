@@ -21,19 +21,19 @@ const stepsContent: TStepContent[] = [
   {
     title: "Trade and explore",
     description:
-      "Instantly trade over 2,500 tokens, connect with hundreds of dApps, and create or sell NFTs in the Web3 world, all through Wigwam",
+      "Instantly trade over 2,500 tokens, connect with hundreds of dApps, and create or sell NFTs in the Web3 world, all through Magiccraft",
     image: OnboardingFirstImage,
   },
   {
     title: "Easy access",
     description:
-      "If you can't find a Wigwam button when connecting to a dApp, you can effortlessly connect to Wigwam using MetaMask button instead, as this option is automatically available",
+      "If you can't find a Magiccraft button when connecting to a dApp, you can effortlessly connect to Magiccraft using MetaMask button instead, as this option is automatically available",
     image: OnboardingSecondImage,
   },
   {
     title: "Always near",
     description:
-      "Pin the Wigwam extension on your browser toolbar for fast access to your tokens and to navigate the Web3 space more efficiently",
+      "Pin the Magiccraft extension on your browser toolbar for fast access to your tokens and to navigate the Web3 space more efficiently",
     image: OnboardingThirdImage,
   },
 ];
@@ -73,7 +73,7 @@ const OnBoardingContent: FC = () => {
             alt="wigwam_logo"
           />
           <h3 className="mb-6 text-[1.75rem] font-bold text-center">
-            Welcome to Wigwam:
+            Welcome to Magiccraft:
             <br />
             Your Gateway to the Web3 World!
           </h3>

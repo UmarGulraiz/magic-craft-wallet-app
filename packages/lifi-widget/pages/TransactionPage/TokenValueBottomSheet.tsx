@@ -1,14 +1,14 @@
-import type { Route } from '@lifi/sdk';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
-import { Box, Button, Typography } from '@mui/material';
-import type { MutableRefObject } from 'react';
-import { forwardRef, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import type { BottomSheetBase } from '../../components/BottomSheet';
-import { BottomSheet } from '../../components/BottomSheet';
-import { useSetContentHeight } from '../../hooks';
-import { CenterContainer, IconCircle } from './StatusBottomSheet.style';
-import { calcValueLoss } from './utils';
+import type { Route } from "@lifi/sdk";
+import WarningRoundedIcon from "@mui/icons-material/WarningRounded";
+import { Box, Button, Typography } from "@mui/material";
+import type { MutableRefObject } from "react";
+import { forwardRef, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import type { BottomSheetBase } from "../../components/BottomSheet";
+import { BottomSheet } from "../../components/BottomSheet";
+import { useSetContentHeight } from "../../hooks";
+import { CenterContainer, IconCircle } from "./StatusBottomSheet.style";
+import { calcValueLoss } from "./utils";
 
 interface TokenValueBottomSheetProps {
   route: Route;
@@ -45,45 +45,59 @@ const TokenValueBottomSheetContent: React.FC<TokenValueBottomSheetProps> = ({
   const ref = useRef<HTMLElement>();
   useSetContentHeight(ref);
   return (
-    <Box p={3} ref={ref} sx={{borderRadius: '10px'}}>
+    <Box p={3} ref={ref} sx={{ borderRadius: "10px" }}>
       <CenterContainer>
-        <IconCircle status="warning" mb={1} className='preventHoverEffect'>
+        <IconCircle status="warning" mb={1} className="preventHoverEffect">
           <WarningRoundedIcon color="warning" />
         </IconCircle>
         <Typography py={1} fontSize={18} fontWeight={700} color="#fff">
-          {t('warning.title.highValueLoss')}
+          {t("warning.title.highValueLoss")}
         </Typography>
       </CenterContainer>
-      <Typography py={1} color="#fff">{t('warning.message.highValueLoss')}</Typography>
+      <Typography py={1} color="#fff">
+        {t("warning.message.highValueLoss")}
+      </Typography>
       <Box display="flex" justifyContent="space-between" mt={1}>
-        <Typography color="#fff">{t('main.sending')}</Typography>
+        <Typography color="#fff">{t("main.sending")}</Typography>
         <Typography fontWeight={600} color="#fff">
-          {t('format.currency', { value: route.fromAmountUSD })}
+          {t("format.currency", { value: route.fromAmountUSD })}
         </Typography>
       </Box>
       <Box display="flex" justifyContent="space-between" mt={0.25}>
-        <Typography color="#fff">{t('main.gasCost')}</Typography>
+        <Typography color="#fff">{t("main.gasCost")}</Typography>
         <Typography fontWeight={600} color="#fff">
-          {t('format.currency', { value: route.gasCostUSD })}
+          {t("format.currency", { value: route.gasCostUSD })}
         </Typography>
       </Box>
       <Box display="flex" justifyContent="space-between" mt={0.25}>
-        <Typography color="#fff">{t('main.receiving')}</Typography>
+        <Typography color="#fff">{t("main.receiving")}</Typography>
         <Typography color="#fff" fontWeight={600}>
-          {t('format.currency', { value: route.toAmountUSD })}
+          {t("format.currency", { value: route.toAmountUSD })}
         </Typography>
       </Box>
       <Box display="flex" justifyContent="space-between" mt={0.25}>
-        <Typography color="#fff">{t('main.valueLoss')}</Typography>
-        <Typography color="#fff" fontWeight={600}>{calcValueLoss(route)}</Typography>
+        <Typography color="#fff">{t("main.valueLoss")}</Typography>
+        <Typography color="#fff" fontWeight={600}>
+          {calcValueLoss(route)}
+        </Typography>
       </Box>
       <Box display="flex" mt={3}>
-        <Button variant="text" onClick={onCancel} fullWidth sx={{borderRadius: '6px'}}>
-          {t('button.cancel')}
+        <Button
+          variant="text"
+          onClick={onCancel}
+          fullWidth
+          sx={{ borderRadius: "6px" }}
+        >
+          {t("button.cancel")}
         </Button>
         <Box display="flex" p={1} />
-        <Button variant="contained" onClick={onContinue} sx={{borderRadius: '6px'}} fullWidth>
-          {t('button.continue')}
+        <Button
+          variant="contained"
+          onClick={onContinue}
+          sx={{ borderRadius: "6px" }}
+          fullWidth
+        >
+          {t("button.continue")}
         </Button>
       </Box>
     </Box>

@@ -1,14 +1,14 @@
 /* eslint-disable react/no-array-index-key */
-import type { LifiStep, TokenAmount } from '@lifi/sdk';
-import type { BoxProps } from '@mui/material';
-import { Box, Skeleton } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import { useChain, useToken } from '../../hooks';
-import { formatTokenAmount, formatTokenPrice } from '../../utils';
-import { SmallAvatar } from '../SmallAvatar';
-import { TextFitter } from '../TextFitter';
-import { TokenAvatar } from '../TokenAvatar';
-import { TextSecondary, TextSecondaryContainer } from './Token.style';
+import type { LifiStep, TokenAmount } from "@lifi/sdk";
+import type { BoxProps } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useChain, useToken } from "../../hooks";
+import { formatTokenAmount, formatTokenPrice } from "../../utils";
+import { SmallAvatar } from "../SmallAvatar";
+import { TextFitter } from "../TextFitter";
+import { TokenAvatar } from "../TokenAvatar";
+import { TextSecondary, TextSecondaryContainer } from "./Token.style";
 
 interface TokenProps {
   token?: TokenAmount;
@@ -70,52 +70,53 @@ export const TokenBase: React.FC<TokenProps & BoxProps> = ({
           chain={chain}
           isLoading={isLoading}
           sx={{ marginRight: 2 }}
-          mainAvatarStyle={{height: '44px', width: '44px'}}
+          mainAvatarStyle={{ height: "44px", width: "44px" }}
         />
         {isLoading ? (
           <Skeleton width={112} height={32} variant="text" />
         ) : (
-          <div style={{display: 'flex', flexDirection: 'column'}}>
-            <div style={{fontSize: '16px', fontWeight: 800}}>
-              {t('format.number', {
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ fontSize: "16px", fontWeight: 800 }}>
+              {t("format.number", {
                 value: formattedTokenAmount,
-              })} {token?.symbol}
+              })}{" "}
+              {token?.symbol}
             </div>
-        <TextSecondaryContainer connected={connected} component="span">
-        {isLoading ? (
-          <Skeleton
-            width={48}
-            height={12}
-            variant="rounded"
-            sx={{ marginTop: 0.5 }}
-          />
-        ) : (
-          <TextSecondary connected={connected}>
-            {t(`format.currency`, {
-              value: formattedTokenPrice,
-            })}
-          </TextSecondary>
-        )}
-        {!disableDescription ? (
-          <TextSecondary connected={connected} px={0.5} dot>
-            /
-          </TextSecondary>
-        ) : null}
-        {true ? (
-          isLoading ? (
-            <Skeleton
-              width={96}
-              height={12}
-              variant="rounded"
-              sx={{ marginTop: 0.5 }}
-            />
-          ) : (
-            <TextSecondary connected={connected} sx={{color: '#fff'}}>
-              {chain?.name}
-            </TextSecondary>
-          )
-        ) : null}
-        {/* {step ? (
+            <TextSecondaryContainer connected={connected} component="span">
+              {isLoading ? (
+                <Skeleton
+                  width={48}
+                  height={12}
+                  variant="rounded"
+                  sx={{ marginTop: 0.5 }}
+                />
+              ) : (
+                <TextSecondary connected={connected}>
+                  {t(`format.currency`, {
+                    value: formattedTokenPrice,
+                  })}
+                </TextSecondary>
+              )}
+              {!disableDescription ? (
+                <TextSecondary connected={connected} px={0.5} dot>
+                  /
+                </TextSecondary>
+              ) : null}
+              {true ? (
+                isLoading ? (
+                  <Skeleton
+                    width={96}
+                    height={12}
+                    variant="rounded"
+                    sx={{ marginTop: 0.5 }}
+                  />
+                ) : (
+                  <TextSecondary connected={connected} sx={{ color: "#fff" }}>
+                    {chain?.name}
+                  </TextSecondary>
+                )
+              ) : null}
+              {/* {step ? (
           <Box display="flex" alignItems="flex-end" height={12} mt={0.5}>
             <Box pr={0.75}>
               <SmallAvatar
@@ -132,11 +133,10 @@ export const TokenBase: React.FC<TokenProps & BoxProps> = ({
             <TextSecondary connected>{step.toolDetails.name}</TextSecondary>
           </Box>
         ) : null} */}
-      </TextSecondaryContainer>
+            </TextSecondaryContainer>
           </div>
         )}
       </Box>
-      
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import OpenInNewIcon from '@mui/icons-material/OpenInNewRounded';
+import OpenInNewIcon from "@mui/icons-material/OpenInNewRounded";
 import {
   Avatar,
   Box,
@@ -8,17 +8,17 @@ import {
   Skeleton,
   Slide,
   Typography,
-} from '@mui/material';
-import { memo, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+} from "@mui/material";
+import { memo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   formatTokenAmount,
   formatTokenPrice,
   shortenAddress,
-} from '../../utils';
-import { IconButton, ListItem, ListItemButton } from './TokenList.style';
-import type { TokenListItemButtonProps, TokenListItemProps } from './types';
-import { useWidgetConfig } from 'packages/lifi-widget/providers';
+} from "../../utils";
+import { IconButton, ListItem, ListItemButton } from "./TokenList.style";
+import type { TokenListItemButtonProps, TokenListItemProps } from "./types";
+import { useWidgetConfig } from "packages/lifi-widget/providers";
 
 export const TokenListItem: React.FC<TokenListItemProps> = memo(
   ({
@@ -39,7 +39,7 @@ export const TokenListItem: React.FC<TokenListItemProps> = memo(
         style={{
           height: `${size}px`,
           transform: `translateY(${start}px)`,
-          borderRadius: '10px'
+          borderRadius: "10px",
         }}
       >
         {startAdornment}
@@ -65,8 +65,10 @@ export const TokenListItemButton: React.FC<TokenListItemButtonProps> = ({
 }) => {
   const { t } = useTranslation();
   const { currencyRate, selectedCurrency } = useWidgetConfig();
-  const priceAmount = currencyRate ? (Number(token.priceUSD) * Number(currencyRate)) : token.priceUSD
-  const currency = selectedCurrency ? selectedCurrency : 'USD'
+  const priceAmount = currencyRate
+    ? Number(token.priceUSD) * Number(currencyRate)
+    : token.priceUSD;
+  const currency = selectedCurrency ? selectedCurrency : "USD";
   const tokenPrice = formatTokenPrice(token.amount, String(priceAmount));
   const container = useRef(null);
   const timeoutId = useRef<ReturnType<typeof setTimeout>>();
@@ -88,28 +90,41 @@ export const TokenListItemButton: React.FC<TokenListItemButtonProps> = ({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      sx={{borderRadius: '10px'}}
+      sx={{ borderRadius: "10px" }}
       dense
     >
       <ListItemAvatar>
-        <Avatar src={token.logoURI} alt={token.symbol} sx={{width: '40px', height: '40px'}}>
+        <Avatar
+          src={token.logoURI}
+          alt={token.symbol}
+          sx={{ width: "40px", height: "40px" }}
+        >
           {token.symbol?.[0]}
         </Avatar>
       </ListItemAvatar>
       <ListItemText
-        sx={{lineHeight: 1}}
-        primary={<div style={{fontSize: '14px', fontWeight: '700'}}>{token.name}</div>}
+        sx={{ lineHeight: 1 }}
+        primary={
+          <div style={{ fontSize: "14px", fontWeight: "700" }}>
+            {token.name}
+          </div>
+        }
         secondaryTypographyProps={{
-          component: 'div',
+          component: "div",
         }}
         secondary={
-          <Box position="relative" height={15} sx={{color: '#737C88', fontSize: '12px'}} ref={container}>
+          <Box
+            position="relative"
+            height={15}
+            sx={{ color: "#737C88", fontSize: "12px" }}
+            ref={container}
+          >
             <Slide
               direction="down"
               in={!showAddress}
               container={container.current}
               style={{
-                position: 'absolute',
+                position: "absolute",
               }}
               appear={false}
             >
@@ -120,7 +135,7 @@ export const TokenListItemButton: React.FC<TokenListItemButtonProps> = ({
               in={showAddress}
               container={container.current}
               style={{
-                position: 'absolute',
+                position: "absolute",
               }}
               appear={false}
               mountOnEnter
@@ -134,7 +149,7 @@ export const TokenListItemButton: React.FC<TokenListItemButtonProps> = ({
                   LinkComponent={Link}
                   disableRipple
                   disableFocusRipple
-                  className='preventHoverEffect'
+                  className="preventHoverEffect"
                   href={`${chain?.metamask.blockExplorerUrls[0]}address/${token.address}`}
                   target="_blank"
                   rel="nofollow noreferrer"
@@ -151,10 +166,14 @@ export const TokenListItemButton: React.FC<TokenListItemButtonProps> = ({
         isBalanceLoading ? (
           <TokenAmountSkeleton />
         ) : (
-          <Box sx={{ textAlign: 'right' }}>
+          <Box sx={{ textAlign: "right" }}>
             {Number(token.amount) ? (
-              <Typography variant="body1" sx={{color: '#C0C1C3', fontWeight: '700 !important'}} noWrap>
-                {t('format.number', {
+              <Typography
+                variant="body1"
+                sx={{ color: "#C0C1C3", fontWeight: "700 !important" }}
+                noWrap
+              >
+                {t("format.number", {
                   value: formatTokenAmount(token.amount),
                 })}
               </Typography>
@@ -168,7 +187,7 @@ export const TokenListItemButton: React.FC<TokenListItemButtonProps> = ({
               >
                 {t(`format.currency`, {
                   value: tokenPrice,
-                  currency: currency
+                  currency: currency,
                 })}
               </Typography>
             ) : null}
@@ -184,7 +203,7 @@ export const TokenListItemSkeleton = () => {
     <ListItem
       secondaryAction={<TokenAmountSkeleton />}
       disablePadding
-      sx={{ position: 'relative', flexDirection: 'row', alignItems: 'center' }}
+      sx={{ position: "relative", flexDirection: "row", alignItems: "center" }}
     >
       <ListItemAvatar>
         <Skeleton
@@ -206,9 +225,9 @@ export const TokenAmountSkeleton: React.FC = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
       }}
     >
       <Skeleton variant="text" width={56} height={24} />

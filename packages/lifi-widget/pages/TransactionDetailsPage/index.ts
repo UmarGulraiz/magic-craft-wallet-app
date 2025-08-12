@@ -1,1 +1,1 @@
-export * from './TransactionDetailsPageExpanded';
+export * from "./TransactionDetailsPageExpanded";

@@ -1,11 +1,11 @@
-import type { TokenAmount } from '@lifi/sdk';
-import { FormHelperText, Skeleton, Typography } from '@mui/material';
-import { useWatch } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { useTokenAddressBalance } from '../../hooks';
-import type { FormTypeProps } from '../../providers';
-import { FormKeyHelper, useWidgetConfig } from '../../providers';
-import { formatTokenAmount, formatTokenPrice } from '../../utils';
+import type { TokenAmount } from "@lifi/sdk";
+import { FormHelperText, Skeleton, Typography } from "@mui/material";
+import { useWatch } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useTokenAddressBalance } from "../../hooks";
+import type { FormTypeProps } from "../../providers";
+import { FormKeyHelper, useWidgetConfig } from "../../providers";
+import { formatTokenAmount, formatTokenPrice } from "../../utils";
 
 export const FormPriceHelperText: React.FC<FormTypeProps> = ({ formType }) => {
   const [chainId, tokenAddress] = useWatch({
@@ -41,28 +41,36 @@ export const FormPriceHelperTextBase: React.FC<
     name: FormKeyHelper.getAmountKey(formType),
   });
 
-  const fromAmountTokenPrice = formatTokenPrice(amount, String(Number(token?.priceUSD) * (Number(currencyRate) || 1)));
+  const fromAmountTokenPrice = formatTokenPrice(
+    amount,
+    String(Number(token?.priceUSD) * (Number(currencyRate) || 1)),
+  );
 
   return (
     <FormHelperText
       component="div"
-      sx={{ display: 'flex', justifyContent: 'space-between', margin: 0, paddingTop: '6px' }}
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        margin: 0,
+        paddingTop: "6px",
+      }}
     >
       <Typography
-        color={fromAmountTokenPrice ? 'text.secondary' : 'grey.600'}
+        color={fromAmountTokenPrice ? "text.secondary" : "grey.600"}
         fontWeight={400}
         fontSize={14}
         marginLeft={2}
         lineHeight={1.3334}
         flex={1}
         sx={{
-          wordBreak: 'break-word',
-          overflowWrap: 'break-word',
+          wordBreak: "break-word",
+          overflowWrap: "break-word",
         }}
       >
         {t(`format.currency`, {
           value: fromAmountTokenPrice,
-          currency: selectedCurrency
+          currency: selectedCurrency,
         })}
       </Typography>
       {isLoading && tokenAddress ? (
@@ -76,7 +84,7 @@ export const FormPriceHelperTextBase: React.FC<
         <Typography
           fontWeight={400}
           fontSize={14}
-          color={'#717A7B'}
+          color={"#717A7B"}
           lineHeight={1.3334}
           pl={0.25}
         >

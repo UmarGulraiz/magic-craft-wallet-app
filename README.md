@@ -1,10 +1,10 @@
-# Wigwam - Web3 Wallet
+# Magiccraft - Web3 Wallet
 
 ### https://wigwam.app
 
 A browser extension Web3 wallet designed for Ethereum, Polygon, BNB Smart Chain, Arbitrum, and all EVM networks. Reliable and secure solution for managing accounts and crypto keys, exploring DeFi, NFTs, and GameFi.
 
-![Wigwam](./docs/banner.png)
+![Magiccraft](./docs/banner.png)
 
 **Table of Contents**
 

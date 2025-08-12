@@ -1,7 +1,7 @@
-import { shallow } from 'zustand/shallow';
-import { useRouteExecutionStore } from './RouteExecutionStore';
-import type { RouteExecution } from './types';
-import { RouteExecutionStatus } from './types';
+import { shallow } from "zustand/shallow";
+import { useRouteExecutionStore } from "./RouteExecutionStore";
+import type { RouteExecution } from "./types";
+import { RouteExecutionStatus } from "./types";
 
 export const useExecutingRoutesIds = (address?: string) => {
   return useRouteExecutionStore(
@@ -27,8 +27,14 @@ export const usePendingRoutesIds = (address?: string) => {
   try {
     return Object.values(
       JSON.parse(localStorage["li.fi-widget-routes"]).state.routes,
-    ).filter((item: any) => item.route.fromAddress.toLowerCase() === address?.toLocaleLowerCase() && item.status === 1).map((item: any) => item.route.id)
+    )
+      .filter(
+        (item: any) =>
+          item.route.fromAddress.toLowerCase() ===
+            address?.toLocaleLowerCase() && item.status === 1,
+      )
+      .map((item: any) => item.route.id);
   } catch {
-    return []
+    return [];
   }
-}
+};

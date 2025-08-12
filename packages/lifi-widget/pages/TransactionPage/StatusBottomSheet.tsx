@@ -96,7 +96,7 @@ export const StatusBottomSheet: React.FC<RouteExecution> = ({
     handleClose();
     navigate('/?tab="transactionDetails"', {
       state: { routeId: route.id },
-      replace: true
+      replace: true,
     });
     // navigate(navigationRoutes.transactionDetails, {
     //   state: { routeId: route.id },
@@ -199,8 +199,8 @@ export const StatusBottomSheet: React.FC<RouteExecution> = ({
     subvariant === "nft" && hasEnumFlag(status, RouteExecutionStatus.Done);
 
   return (
-    <BottomSheet ref={ref} sx={{borderRadius: '10px'}}>
-      <Box p={3} sx={{borderRadius: '10px'}}>
+    <BottomSheet ref={ref} sx={{ borderRadius: "10px" }}>
+      <Box p={3} sx={{ borderRadius: "10px" }}>
         {!showContractComponent ? (
           <CenterContainer>
             <IconCircle status={status} mb={1}>
@@ -243,7 +243,12 @@ export const StatusBottomSheet: React.FC<RouteExecution> = ({
           <Typography py={1}>{secondaryMessage}</Typography>
         ) : null}
         <Box mt={2}>
-          <Button variant="contained" fullWidth onClick={handlePrimaryButton} sx={{borderRadius: '6px'}}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={handlePrimaryButton}
+            sx={{ borderRadius: "6px" }}
+          >
             {status === RouteExecutionStatus.Idle ? t("button.ok") : null}
             {hasEnumFlag(status, RouteExecutionStatus.Done)
               ? t("button.done")
@@ -255,7 +260,12 @@ export const StatusBottomSheet: React.FC<RouteExecution> = ({
         </Box>
         {hasEnumFlag(status, RouteExecutionStatus.Done) ? (
           <Box mt={2}>
-            <Button variant="text" onClick={handleSeeDetails} fullWidth sx={{borderRadius: '6px'}}>
+            <Button
+              variant="text"
+              onClick={handleSeeDetails}
+              fullWidth
+              sx={{ borderRadius: "6px" }}
+            >
               {t("button.seeDetails")}
             </Button>
           </Box>

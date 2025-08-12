@@ -1,9 +1,9 @@
-import type { EVMChain } from '@lifi/sdk';
-import { useController, useFormContext } from 'react-hook-form';
-import { useChains, useSwapOnly } from '../../hooks';
-import type { FormType } from '../../providers';
-import { FormKey, FormKeyHelper, useWidgetConfig } from '../../providers';
-import { useChainOrder } from '../../stores';
+import type { EVMChain } from "@lifi/sdk";
+import { useController, useFormContext } from "react-hook-form";
+import { useChains, useSwapOnly } from "../../hooks";
+import type { FormType } from "../../providers";
+import { FormKey, FormKeyHelper, useWidgetConfig } from "../../providers";
+import { useChainOrder } from "../../stores";
 
 export const useChainSelect = (formType: FormType) => {
   const chainKey = FormKeyHelper.getChainKey(formType);
@@ -22,12 +22,12 @@ export const useChainSelect = (formType: FormType) => {
     }
     if (chainsOrder) {
       const selectedChains = chainsOrder
-      .map((chainId) => chains.find((chain) => chain.id === chainId))
-      .filter(Boolean) as EVMChain[];
-    
+        .map((chainId) => chains.find((chain) => chain.id === chainId))
+        .filter(Boolean) as EVMChain[];
+
       return selectedChains.slice(0, 5);
     } else {
-      return []
+      return [];
     }
   };
 
@@ -35,13 +35,13 @@ export const useChainSelect = (formType: FormType) => {
     onChange(chainId);
     onBlur();
     if (swapOnly) {
-      setValue(FormKeyHelper.getChainKey('to'), chainId, {
+      setValue(FormKeyHelper.getChainKey("to"), chainId, {
         shouldTouch: true,
       });
     }
-    setValue(FormKeyHelper.getTokenKey(formType), '');
-    setValue(FormKeyHelper.getAmountKey(formType), '');
-    setValue(FormKey.TokenSearchFilter, '');
+    setValue(FormKeyHelper.getTokenKey(formType), "");
+    setValue(FormKeyHelper.getAmountKey(formType), "");
+    setValue(FormKey.TokenSearchFilter, "");
     setChainOrder(chainId);
   };
 

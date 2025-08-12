@@ -1,14 +1,14 @@
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
-import InfoRoundedIcon from '@mui/icons-material/InfoRounded';
-import { ListItemAvatar, ListItemText, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useProcessMessage, useRouteExecution } from '../../hooks';
-import { RouteExecutionStatus } from '../../stores';
-import { navigationRoutes } from '../../utils';
-import { StepTimer } from '../Step/StepTimer';
-import { TokenAvatar, TokenAvatarGroup } from '../TokenAvatar';
-import { ListItem, ListItemButton } from './ActiveTransactions.style';
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ErrorRoundedIcon from "@mui/icons-material/ErrorRounded";
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import { ListItemAvatar, ListItemText, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useProcessMessage, useRouteExecution } from "../../hooks";
+import { RouteExecutionStatus } from "../../stores";
+import { navigationRoutes } from "../../utils";
+import { StepTimer } from "../Step/StepTimer";
+import { TokenAvatar, TokenAvatarGroup } from "../TokenAvatar";
+import { ListItem, ListItemButton } from "./ActiveTransactions.style";
 
 export const ActiveTransactionItem: React.FC<{
   routeId: string;
@@ -58,8 +58,8 @@ export const ActiveTransactionItem: React.FC<{
     <ListItemComponent onClick={handleClick} dense disableRipple={dense}>
       <ListItemAvatar>
         {/* <TokenAvatarGroup total={2}> */}
-          <TokenAvatar token={route.fromToken} />
-          <TokenAvatar token={route.toToken} sx={{marginLeft: '10px'}} />
+        <TokenAvatar token={route.fromToken} />
+        <TokenAvatar token={route.toToken} sx={{ marginLeft: "10px" }} />
         {/* </TokenAvatarGroup> */}
       </ListItemAvatar>
       <ListItemText
@@ -70,20 +70,35 @@ export const ActiveTransactionItem: React.FC<{
             fontWeight={500}
             lineHeight={1}
             sx={{
-              fontSize: '14px',
-              display: 'flex',
-              alignItems: 'center',
+              fontSize: "14px",
+              display: "flex",
+              alignItems: "center",
               marginLeft: 2,
               height: 16,
             }}
           >
-            <span style={{color: '#fff', display: 'flex'}}>{parseFloat((Number(route.fromAmount)/Math.pow(10, route.fromToken.decimals)).toFixed(4))} {route.fromToken.symbol}</span>
+            <span style={{ color: "#fff", display: "flex" }}>
+              {parseFloat(
+                (
+                  Number(route.fromAmount) /
+                  Math.pow(10, route.fromToken.decimals)
+                ).toFixed(4),
+              )}{" "}
+              {route.fromToken.symbol}
+            </span>
             &nbsp;to&nbsp;
-            <span style={{color: '#fff', display: 'flex'}}>{parseFloat((Number(route.toAmount)/Math.pow(10, route.toToken.decimals)).toFixed(4))} {route.toToken.symbol}</span>
+            <span style={{ color: "#fff", display: "flex" }}>
+              {parseFloat(
+                (
+                  Number(route.toAmount) / Math.pow(10, route.toToken.decimals)
+                ).toFixed(4),
+              )}{" "}
+              {route.toToken.symbol}
+            </span>
           </Typography>
         }
       />
-      {<div className='txStatus progress'>In Progress...</div>}
+      {<div className="txStatus progress">In Progress...</div>}
     </ListItemComponent>
   );
 };

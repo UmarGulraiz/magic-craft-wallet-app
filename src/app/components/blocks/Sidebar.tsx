@@ -13,7 +13,7 @@ import { ReactComponent as WigwamTitleIcon } from "app/icons/WigwamTitle.svg";
 import useSidebarLinks from "./Sidebar.Links";
 
 const Sidebar: FC = () => {
-  const { NavLinksPrimary, NavLinksSecondary } = useSidebarLinks();
+  const { NavLinksPrimary } = useSidebarLinks();
 
   return (
     <nav
@@ -36,13 +36,6 @@ const Sidebar: FC = () => {
         <WigwamTitleIcon className={classNames("ml-3 my-1 h-8 w-auto")} />
       </Link>
       <SidebarBlock links={NavLinksPrimary} />
-      <SidebarBlock
-        links={NavLinksSecondary}
-        className={classNames(
-          "mt-[6.25rem] pt-4",
-          "border-t border-brand-main/[.07]",
-        )}
-      />
     </nav>
   );
 };

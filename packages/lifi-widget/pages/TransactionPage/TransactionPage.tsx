@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Box, Button, Tooltip, Typography } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import type { BottomSheetBase } from "../../components/BottomSheet";
@@ -33,8 +33,7 @@ import {
 } from "./TokenValueBottomSheet";
 import { Container } from "./TransactionPage.style";
 import { calcValueLoss } from "./utils";
-import backIcon from '../../../../src/app/icons/back.svg';
-
+import backIcon from "../../../../src/app/icons/back.svg";
 
 export const TransactionPage: React.FC = () => {
   const { t } = useTranslation();
@@ -46,17 +45,17 @@ export const TransactionPage: React.FC = () => {
     insurance,
     contractComponent,
     contractSecondaryComponent,
-    onBeforeTransaction
+    onBeforeTransaction,
   } = useWidgetConfig();
   const { state, search } = useLocation();
   const headerStoreContext = useHeaderStoreContext();
   const stateRouteId = state?.routeId;
   const [routeId, setRouteId] = useState<string>(stateRouteId);
-  const [restartFlag, setRestartFlag] = useState(false)
-  const navigate = useNavigate()
+  const [restartFlag, setRestartFlag] = useState(false);
+  const navigate = useNavigate();
 
   if (!stateRouteId) {
-    return null
+    return null;
   }
 
   const tokenValueBottomSheetRef = useRef<BottomSheetBase>(null);
@@ -92,7 +91,7 @@ export const TransactionPage: React.FC = () => {
   useEffect(() => {
     if (status === RouteExecutionStatus.Idle && !restartFlag) {
       emitter.emit(WidgetEvent.ReviewTransactionPageEntered, route);
-      handleStartClick()
+      handleStartClick();
     }
     // We want to emit event only when the page is mounted
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -106,7 +105,7 @@ export const TransactionPage: React.FC = () => {
 
   const handleExecuteRoute = () => {
     if (onBeforeTransaction) {
-      onBeforeTransaction(route)
+      onBeforeTransaction(route);
     }
     if (tokenValueBottomSheetRef.current?.isOpen()) {
       emitter.emit(WidgetEvent.RouteHighValueLoss, {
@@ -117,7 +116,7 @@ export const TransactionPage: React.FC = () => {
       });
     }
     tokenValueBottomSheetRef.current?.close();
-    
+
     executeRoute();
     setValue(FormKey.FromAmount, "");
     setValue(FormKey.FromToken, "");
@@ -143,10 +142,13 @@ export const TransactionPage: React.FC = () => {
   };
 
   const handleRemoveRoute = () => {
-    if (status === RouteExecutionStatus.Idle || status === RouteExecutionStatus.Failed) {
+    if (
+      status === RouteExecutionStatus.Idle ||
+      status === RouteExecutionStatus.Failed
+    ) {
       deleteRoute();
     }
-    navigate('/');
+    navigate("/");
   };
 
   const getButtonText = (): string => {
@@ -186,19 +188,15 @@ export const TransactionPage: React.FC = () => {
     route.steps[0].execution?.process
       .filter((process) => process.type !== "TOKEN_ALLOWANCE")
       .find((process) => process.txHash)?.txHash ?? route.fromAddress;
-  
+
   const getTxStatus = (status: RouteExecutionStatus) => {
     switch (status) {
-      case (RouteExecutionStatus.Done):
-        return (
-          <div className='txStatus complete'>Complete</div>
-        )
-      case (RouteExecutionStatus.Pending):
-        return (
-          <div className='txStatus progress'>In Progress...</div>
-        )
+      case RouteExecutionStatus.Done:
+        return <div className="txStatus complete">Complete</div>;
+      case RouteExecutionStatus.Pending:
+        return <div className="txStatus progress">In Progress...</div>;
     }
-  }
+  };
 
   // useEffect(() => {
   //   console.log('Unmount status', status)
@@ -213,16 +211,50 @@ export const TransactionPage: React.FC = () => {
   //   }
   // }, [status, route])
 
-
-
   return (
-    <Container sx={{width: '500px !important', background: 'transparent', scrollbarGutter: 'stable', marginLeft: '0px', paddingTop: '0', height: '100%', overflowX: 'hidden', overflowY: 'auto', borderRight: '1px solid #21262A'}}>
-      <div style={{display: 'flex',  justifyContent: 'flex-start', alignItems: 'center', marginBottom: '30px', position: 'sticky', top: '-1px', paddingBottom: '10px', zIndex: '10', width: '100%', background: '#181a1f'}}>
-        <img style={{marginRight: '24px', cursor: 'pointer'}} className='closeButtonWrapper' src={backIcon} onClick={() => navigate('/')}/>
-        <Typography color={'#fff'} fontSize={16} sx={{fontWeight: '600 !important'}}>Swap</Typography>
+    <Container
+      sx={{
+        width: "500px !important",
+        background: "transparent",
+        scrollbarGutter: "stable",
+        marginLeft: "0px",
+        paddingTop: "0",
+        height: "100%",
+        overflowX: "hidden",
+        overflowY: "auto",
+        borderRight: "1px solid #21262A",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          marginBottom: "30px",
+          position: "sticky",
+          top: "-1px",
+          paddingBottom: "10px",
+          zIndex: "10",
+          width: "100%",
+          background: "#181a1f",
+        }}
+      >
+        <img
+          style={{ marginRight: "24px", cursor: "pointer" }}
+          className="closeButtonWrapper"
+          src={backIcon}
+          onClick={() => navigate("/")}
+        />
+        <Typography
+          color={"#fff"}
+          fontSize={16}
+          sx={{ fontWeight: "600 !important" }}
+        >
+          Swap
+        </Typography>
         {/* {getTxStatus(status || RouteExecutionStatus.Pending)} */}
       </div>
-      <div className="txSteps" style={{marginTop: '14px'}}>
+      <div className="txSteps" style={{ marginTop: "14px" }}>
         {getStepList(route, subvariant)}
       </div>
       {subvariant === "nft" ? (
@@ -246,39 +278,40 @@ export const TransactionPage: React.FC = () => {
         />
       ) : null}
       {
-      // status === RouteExecutionStatus.Idle ||
-      status === RouteExecutionStatus.Failed ? (
-        <>
-          <GasMessage mt={2} route={route} />
-          <Box mt={2} display="flex">
-            <StartButton
-              text={getButtonText()}
-              onClick={handleStartClick}
-              route={route}
-              insurableRouteId={stateRouteId}
-            />
-            {status === RouteExecutionStatus.Failed ? (
-              <Tooltip
-                title={t("button.removeTransaction")}
-                placement="bottom-end"
-                enterDelay={400}
-                arrow
-              >
-                <Button
-                  onClick={handleRemoveRoute}
-                  sx={{
-                    minWidth: 48,
-                    marginLeft: 1,
-                    borderRadius: '6px'
-                  }}
+        // status === RouteExecutionStatus.Idle ||
+        status === RouteExecutionStatus.Failed ? (
+          <>
+            <GasMessage mt={2} route={route} />
+            <Box mt={2} display="flex">
+              <StartButton
+                text={getButtonText()}
+                onClick={handleStartClick}
+                route={route}
+                insurableRouteId={stateRouteId}
+              />
+              {status === RouteExecutionStatus.Failed ? (
+                <Tooltip
+                  title={t("button.removeTransaction")}
+                  placement="bottom-end"
+                  enterDelay={400}
+                  arrow
                 >
-                  <DeleteIcon />
-                </Button>
-              </Tooltip>
-            ) : null}
-          </Box>
-        </>
-      ) : null}
+                  <Button
+                    onClick={handleRemoveRoute}
+                    sx={{
+                      minWidth: 48,
+                      marginLeft: 1,
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Tooltip>
+              ) : null}
+            </Box>
+          </>
+        ) : null
+      }
       {/* {status ? <StatusBottomSheet status={status} route={route} /> : null} */}
       {tokenValueLossThresholdExceeded && subvariant !== "nft" ? (
         <TokenValueBottomSheet
@@ -288,7 +321,10 @@ export const TransactionPage: React.FC = () => {
           // onCancel={() => navigate('/')}
         />
       ) : null}
-      <ExchangeRateBottomSheet ref={exchangeRateBottomSheetRef} onContinue={handleExecuteRoute} />
+      <ExchangeRateBottomSheet
+        ref={exchangeRateBottomSheetRef}
+        onContinue={handleExecuteRoute}
+      />
     </Container>
   );
 };

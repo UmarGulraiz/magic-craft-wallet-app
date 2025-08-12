@@ -1,14 +1,17 @@
-import { useMemo } from 'react';
-import { getAddress } from '@ethersproject/address';
-import { useTokens } from './useTokens';
-import { useTokenSearch } from './useTokenSearch';
+import { useMemo } from "react";
+import { getAddress } from "@ethersproject/address";
+import { useTokens } from "./useTokens";
+import { useTokenSearch } from "./useTokenSearch";
 
 export const useToken = (chainId?: number, tokenAddress?: string) => {
   const { tokens, isLoading } = useTokens(chainId);
 
   const token = useMemo(() => {
     const token = tokens?.find(
-      (token) => tokenAddress && getAddress(token.address) === getAddress(tokenAddress) && token.chainId === chainId,
+      (token) =>
+        tokenAddress &&
+        getAddress(token.address) === getAddress(tokenAddress) &&
+        token.chainId === chainId,
     );
     return token;
   }, [chainId, tokenAddress, tokens]);

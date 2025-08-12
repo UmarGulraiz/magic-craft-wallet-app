@@ -10,7 +10,6 @@ import { AddAccountStep } from "app/nav";
 import AddAccountHeader from "app/components/blocks/AddAccountHeader";
 import { ReactComponent as CreateIcon } from "app/icons/addaccount-create.svg";
 import { ReactComponent as ImportIcon } from "app/icons/addaccount-import.svg";
-import { ReactComponent as LedgerIcon } from "app/icons/addaccount-ledger.svg";
 import { ReactComponent as ChevronRightIcon } from "app/icons/chevron-right.svg";
 import { ReactComponent as SuccessGreen } from "app/icons/success-green.svg";
 
@@ -72,14 +71,6 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
               navigateToStep(AddAccountStep.ImportSeedPhrase);
             },
           },
-          {
-            title: "Ledger",
-            description: "Connect your Ledger wallet",
-            Icon: LedgerIcon,
-            action: () => {
-              onLedgerOpened?.();
-            },
-          },
         ] as const,
       [stateRef, navigateToStep, onLedgerOpened],
     );
@@ -89,7 +80,9 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
         <AddAccountHeader
           className="mb-12"
           description={
-            isInitialWallet ? "Join the future of finance with Wigwam" : null
+            isInitialWallet
+              ? "Join the future of finance with Magiccraft"
+              : null
           }
         >
           {isInitialWallet ? "Let’s start your journey" : "Add more wallets"}

@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import type { ExchangeRateUpdateParams, Route } from '@lifi/sdk';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useCallback, useEffect, useRef } from 'react';
-import { shallow } from 'zustand/shallow';
-import { useLiFi, useWallet, useWidgetConfig } from '../providers';
+import type { ExchangeRateUpdateParams, Route } from "@lifi/sdk";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect, useRef } from "react";
+import { shallow } from "zustand/shallow";
+import { useLiFi, useWallet, useWidgetConfig } from "../providers";
 import {
   getUpdatedProcess,
   isRouteActive,
@@ -11,11 +11,11 @@ import {
   isRouteFailed,
   useRouteExecutionStore,
   useRouteExecutionStoreContext,
-} from '../stores';
-import { WidgetEvent } from '../types/events';
-import { useWidgetEvents } from './useWidgetEvents';
-import { useNavigate } from 'react-router-dom';
-import { LINEA } from 'fixtures/networks/linea';
+} from "../stores";
+import { WidgetEvent } from "../types/events";
+import { useWidgetEvents } from "./useWidgetEvents";
+import { useNavigate } from "react-router-dom";
+import { LINEA } from "fixtures/networks/linea";
 
 interface RouteExecutionProps {
   routeId: string;
@@ -40,7 +40,7 @@ export const useRouteExecution = ({
   const routeExecution = useRouteExecutionStore(
     (state) => state.routes[routeId],
   );
-  const { onBeforeTransaction, onChangeFee } = useWidgetConfig()
+  const { onBeforeTransaction, onChangeFee } = useWidgetConfig();
   const [updateRoute, restartRoute, deleteRoute] = useRouteExecutionStore(
     (state) => [state.updateRoute, state.restartRoute, state.deleteRoute],
     shallow,
@@ -49,7 +49,7 @@ export const useRouteExecution = ({
   const navigate = useNavigate();
 
   const updateRouteHook = (updatedRoute: Route) => {
-    console.log('updatedRoute', updatedRoute)
+    console.log("updatedRoute", updatedRoute);
 
     const routeExecution =
       routeExecutionStoreContext.getState().routes[updatedRoute.id];
@@ -59,10 +59,20 @@ export const useRouteExecution = ({
     const clonedUpdatedRoute = structuredClone(updatedRoute);
     updateRoute(clonedUpdatedRoute);
     const process = getUpdatedProcess(routeExecution.route, clonedUpdatedRoute);
-    
+
     if (process) {
-      if (onBeforeTransaction && clonedUpdatedRoute && process.type === "SWAP" && clonedUpdatedRoute.steps[1]) {
-        onBeforeTransaction({...clonedUpdatedRoute, fromChainId: clonedUpdatedRoute.toChainId, fromToken: clonedUpdatedRoute.steps[1].action.fromToken, toToken: clonedUpdatedRoute.steps[1].action.toToken})
+      if (
+        onBeforeTransaction &&
+        clonedUpdatedRoute &&
+        process.type === "SWAP" &&
+        clonedUpdatedRoute.steps[1]
+      ) {
+        onBeforeTransaction({
+          ...clonedUpdatedRoute,
+          fromChainId: clonedUpdatedRoute.toChainId,
+          fromToken: clonedUpdatedRoute.steps[1].action.fromToken,
+          toToken: clonedUpdatedRoute.steps[1].action.toToken,
+        });
       }
       emitter.emit(WidgetEvent.RouteExecutionUpdated, {
         route: clonedUpdatedRoute,
@@ -79,7 +89,7 @@ export const useRouteExecution = ({
         process,
       });
     }
-    console.log('Route updated.', clonedUpdatedRoute);
+    console.log("Route updated.", clonedUpdatedRoute);
   };
 
   const switchChainHook = async (requiredChainId: number) => {
@@ -92,7 +102,7 @@ export const useRouteExecution = ({
     if (currentChainId !== requiredChainId) {
       const signer = await switchChain(requiredChainId);
       if (!signer) {
-        throw new Error('Chain was not switched.');
+        throw new Error("Chain was not switched.");
       }
       return signer;
     }
@@ -116,13 +126,13 @@ export const useRouteExecution = ({
   const executeRouteMutation = useMutation(
     () => {
       if (!account.signer) {
-        throw Error('Account signer not found.');
+        throw Error("Account signer not found.");
       }
       if (!routeExecution?.route) {
-        throw Error('Execution route not found.');
+        throw Error("Execution route not found.");
       }
-      queryClient.removeQueries(['routes'], { exact: false });
-    
+      queryClient.removeQueries(["routes"], { exact: false });
+
       return lifi.executeRoute(account.signer, routeExecution.route, {
         updateRouteHook,
         switchChainHook,
@@ -133,7 +143,7 @@ export const useRouteExecution = ({
     },
     {
       onMutate: () => {
-        console.log('Execution started.', routeId);
+        console.log("Execution started.", routeId);
         if (routeExecution) {
           emitter.emit(WidgetEvent.RouteExecutionStarted, routeExecution.route);
         }
@@ -144,13 +154,13 @@ export const useRouteExecution = ({
   const resumeRouteMutation = useMutation(
     (resumedRoute?: Route) => {
       if (!account.signer) {
-        throw Error('Account signer not found.');
+        throw Error("Account signer not found.");
       }
       if (!routeExecution?.route) {
-        throw Error('Execution route not found.');
+        throw Error("Execution route not found.");
       }
       if (onBeforeTransaction && routeExecution) {
-        onBeforeTransaction(routeExecution?.route)
+        onBeforeTransaction(routeExecution?.route);
       }
       return lifi.resumeRoute(
         account.signer,
@@ -166,22 +176,22 @@ export const useRouteExecution = ({
     },
     {
       onMutate: () => {
-        console.log('Resumed to execution.', routeId);
+        console.log("Resumed to execution.", routeId);
       },
     },
   );
 
   const executeRoute = useCallback(() => {
-    console.log('executeRouteMutation.mutateAsync')
+    console.log("executeRouteMutation.mutateAsync");
     executeRouteMutation.mutateAsync(undefined, {
       onError: (error) => {
-        console.warn('Execution failed!', routeId, error);
+        console.warn("Execution failed!", routeId, error);
       },
       onSuccess: (route: Route) => {
         navigate('/?tab="transactionDetails"', {
           state: { routeId: route.id },
         });
-        console.log('Executed successfully!', route);
+        console.log("Executed successfully!", route);
       },
     });
   }, [executeRouteMutation, routeId]);
@@ -190,10 +200,10 @@ export const useRouteExecution = ({
     (route?: Route) => {
       resumeRouteMutation.mutateAsync(route, {
         onError: (error) => {
-          console.warn('Resumed execution failed.', routeId, error);
+          console.warn("Resumed execution failed.", routeId, error);
         },
         onSuccess: (route) => {
-          console.log('Resumed execution successful.', route);
+          console.log("Resumed execution successful.", route);
         },
       });
     },
@@ -201,13 +211,13 @@ export const useRouteExecution = ({
   );
 
   const restartRouteMutation = useCallback(() => {
-    resumedAfterMount.current = false
+    resumedAfterMount.current = false;
     restartRoute(routeId);
     if (onBeforeTransaction && routeExecution) {
-      onBeforeTransaction(routeExecution?.route)
+      onBeforeTransaction(routeExecution?.route);
     }
     resumeRoute(routeExecution?.route);
-    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resumeRoute, routeExecution?.route, routeId]);
 

@@ -1,31 +1,30 @@
-import { forwardRef, useEffect, useMemo } from 'react';
-import type { WidgetDrawer } from './AppDrawer';
-import { AppDrawer } from './AppDrawer';
-import { AppProvider } from './AppProvider';
-import { AppRoutes } from './AppRoutes';
+import { forwardRef, useEffect, useMemo } from "react";
+import type { WidgetDrawer } from "./AppDrawer";
+import { AppDrawer } from "./AppDrawer";
+import { AppProvider } from "./AppProvider";
+import { AppRoutes } from "./AppRoutes";
 import {
   AppContainer,
   AppExpandedContainer,
   FlexContainer,
-} from './components/AppContainer';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useWatch } from 'react-hook-form';
+} from "./components/AppContainer";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useWatch } from "react-hook-form";
 
-import { Header } from './components/Header';
-import { Initializer } from './components/Initializer';
-import { PoweredBy } from './components/PoweredBy';
-import { RoutesExpanded } from './components/Routes';
-import { TransactionHistoryPageExpanded } from './pages/TransactionHistoryPage/TransactionHistoryPageExpanded';
-import { TransactionDetailsPageExpanded } from './pages/TransactionDetailsPage/TransactionDetailsPageExpanded';
-import { SettingsPageExpanded } from './pages/SettingsPage/SettingsPageExpanded';
-import { TransactionPageExpanded } from './pages/TransactionPage/TransactionPageExpanded'
-import { useExpandableVariant } from './hooks';
-import { useWidgetConfig, FormKey } from './providers';
-import type { WidgetConfig, WidgetProps } from './types';
-import { ElementId, createElementId } from './utils';
+import { Header } from "./components/Header";
+import { Initializer } from "./components/Initializer";
+import { PoweredBy } from "./components/PoweredBy";
+import { RoutesExpanded } from "./components/Routes";
+import { TransactionHistoryPageExpanded } from "./pages/TransactionHistoryPage/TransactionHistoryPageExpanded";
+import { TransactionDetailsPageExpanded } from "./pages/TransactionDetailsPage/TransactionDetailsPageExpanded";
+import { SettingsPageExpanded } from "./pages/SettingsPage/SettingsPageExpanded";
+import { TransactionPageExpanded } from "./pages/TransactionPage/TransactionPageExpanded";
+import { useExpandableVariant } from "./hooks";
+import { useWidgetConfig, FormKey } from "./providers";
+import type { WidgetConfig, WidgetProps } from "./types";
+import { ElementId, createElementId } from "./utils";
 
-
-import './override.css';
+import "./override.css";
 
 export const App = forwardRef<WidgetDrawer, WidgetProps>(
   ({ elementRef, open, integrator, ...other }, ref) => {
@@ -33,7 +32,7 @@ export const App = forwardRef<WidgetDrawer, WidgetProps>(
       () => ({ integrator, ...other, ...other.config }),
       [integrator, other],
     );
-    return config?.variant !== 'drawer' ? (
+    return config?.variant !== "drawer" ? (
       <AppProvider config={config}>
         <AppDefault />
       </AppProvider>
@@ -61,9 +60,9 @@ export const AppDefault = () => {
 
   useEffect(() => {
     if (fromToken && toToken && fromAmount) {
-      navigate('/')
+      navigate("/");
     }
-  }, [fromToken, toToken, fromAmount])
+  }, [fromToken, toToken, fromAmount]);
 
   return (
     <AppExpandedContainer
@@ -77,11 +76,25 @@ export const AppDefault = () => {
         <PoweredBy />
         <Initializer />
       </AppContainer>
-      {(expandable && !location.search.includes("settings") && !location.search.includes("transactionProcessing") && !location.search.includes("transactionHistory") && !location.search.includes("transactionDetails")) ?  <RoutesExpanded /> : null}
-      {(expandable && location.search.includes("transactionHistory")) ? <TransactionHistoryPageExpanded /> : null}
-      {(expandable && location.search.includes("transactionDetails")) ? <TransactionDetailsPageExpanded /> : null}
-      {(expandable && location.search.includes("settings")) ? <SettingsPageExpanded /> : null}
-      {(expandable && location.search.includes("transactionProcessing")) ? <TransactionPageExpanded /> : null}
+      {expandable &&
+      !location.search.includes("settings") &&
+      !location.search.includes("transactionProcessing") &&
+      !location.search.includes("transactionHistory") &&
+      !location.search.includes("transactionDetails") ? (
+        <RoutesExpanded />
+      ) : null}
+      {expandable && location.search.includes("transactionHistory") ? (
+        <TransactionHistoryPageExpanded />
+      ) : null}
+      {expandable && location.search.includes("transactionDetails") ? (
+        <TransactionDetailsPageExpanded />
+      ) : null}
+      {expandable && location.search.includes("settings") ? (
+        <SettingsPageExpanded />
+      ) : null}
+      {expandable && location.search.includes("transactionProcessing") ? (
+        <TransactionPageExpanded />
+      ) : null}
     </AppExpandedContainer>
   );
 };

@@ -1,21 +1,21 @@
-import { useRoutes } from 'react-router-dom';
-import { NotFound } from './components/NotFound';
-import { ActiveTransactionsPage } from './pages/ActiveTransactionsPage';
-import { MainPage } from './pages/MainPage';
-import { RoutesPage } from './pages/RoutesPage';
-import { SelectChainPage } from './pages/SelectChainPage';
-import { SelectEnabledToolsPage } from './pages/SelectEnabledToolsPage';
-import { SelectTokenPage } from './pages/SelectTokenPage';
-import { SelectWalletPage } from './pages/SelectWalletPage';
-import { SettingsPage } from './pages/SettingsPage';
-import { TransactionHistoryPage } from './pages/TransactionHistoryPage';
-import { TransactionPage } from './pages/TransactionPage';
-import { navigationRoutes } from './utils';
+import { useRoutes } from "react-router-dom";
+import { NotFound } from "./components/NotFound";
+import { ActiveTransactionsPage } from "./pages/ActiveTransactionsPage";
+import { MainPage } from "./pages/MainPage";
+import { RoutesPage } from "./pages/RoutesPage";
+import { SelectChainPage } from "./pages/SelectChainPage";
+import { SelectEnabledToolsPage } from "./pages/SelectEnabledToolsPage";
+import { SelectTokenPage } from "./pages/SelectTokenPage";
+import { SelectWalletPage } from "./pages/SelectWalletPage";
+import { SettingsPage } from "./pages/SettingsPage";
+import { TransactionHistoryPage } from "./pages/TransactionHistoryPage";
+import { TransactionPage } from "./pages/TransactionPage";
+import { navigationRoutes } from "./utils";
 
 export const AppRoutes = () => {
   const element = useRoutes([
     {
-      path: '/',
+      path: "/",
       element: <MainPage />,
     },
     {

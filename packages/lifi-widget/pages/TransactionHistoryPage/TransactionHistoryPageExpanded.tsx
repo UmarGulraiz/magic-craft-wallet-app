@@ -1,35 +1,47 @@
 /* eslint-disable react/no-array-index-key */
-import { useState } from 'react';
-import type { Route } from '@lifi/sdk';
-import { Collapse, Grow, Stack, Typography } from '@mui/material';
-import { useFormState } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
-import { useMatch, useNavigate } from 'react-router-dom';
-import { useRoutes } from '../../hooks';
-import { useWidgetConfig } from '../../providers';
-import { useSetExecutableRoute } from '../../stores';
-import { navigationRoutes, formatInputAmount } from '../../utils';
-import { TransactionHistoryPage } from './TransactionHistoryPage';
+import { useState } from "react";
+import type { Route } from "@lifi/sdk";
+import { Collapse, Grow, Stack, Typography } from "@mui/material";
+import { useFormState } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useMatch, useNavigate } from "react-router-dom";
+import { useRoutes } from "../../hooks";
+import { useWidgetConfig } from "../../providers";
+import { useSetExecutableRoute } from "../../stores";
+import { navigationRoutes, formatInputAmount } from "../../utils";
+import { TransactionHistoryPage } from "./TransactionHistoryPage";
 // import { ProgressToNextUpdate } from '../ProgressToNextUpdate';
 // import { RouteCard, RouteCardSkeleton, RouteNotFoundCard } from '../RouteCard';
-import { useController, useWatch } from 'react-hook-form';
+import { useController, useWatch } from "react-hook-form";
 
 import {
   CollapseContainer,
   Container,
   Header,
   ScrollableContainer,
-} from '../../components/Routes/RoutesExpanded.style';
+} from "../../components/Routes/RoutesExpanded.style";
 
 const timeout = { enter: 225, exit: 225, appear: 0 };
 
 export const TransactionHistoryPageExpanded = () => {
-  const element = useMatch('/');
+  const element = useMatch("/");
   return (
-    <CollapseContainer sx={{ overflowY: 'auto', scrollbarGutter: 'stable', overflowX: 'hidden', height: '100%'}}>
-      <Collapse timeout={timeout} in={!!element} orientation="horizontal" sx={{height: '100%'}}>
+    <CollapseContainer
+      sx={{
+        overflowY: "auto",
+        scrollbarGutter: "stable",
+        overflowX: "hidden",
+        height: "100%",
+      }}
+    >
+      <Collapse
+        timeout={timeout}
+        in={!!element}
+        orientation="horizontal"
+        sx={{ height: "100%" }}
+      >
         <Grow timeout={timeout} in={!!element} mountOnEnter unmountOnExit>
-          <div style={{height: '100%'}}>
+          <div style={{ height: "100%" }}>
             <TransactionHistoryPage />
           </div>
         </Grow>
@@ -60,7 +72,6 @@ export const TransactionHistoryPageExpanded = () => {
 //     refetchTime,
 //     refetch,
 //   } = useRoutes();
-
 
 //   const currentRoute = routes?.[0];
 

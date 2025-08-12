@@ -55,11 +55,11 @@ export class InpageProvider extends Emitter {
   // https://eips.ethereum.org/EIPS/eip-6963
   // https://eips.ethereum.org/EIPS/eip-5749
   info: EIP6963ProviderInfo = Object.freeze({
-    name: "Wigwam",
+    name: "Magiccraft",
     uuid: `wigwam-${process.env.BUILD_ID}`,
     rdns: "com.wigwam.wallet",
     icon: ICON_SVG_BASE64,
-    description: "Wigwam — Web 3.0 Wallet",
+    description: "Magiccraft — Web 3.0 Wallet",
   });
 
   #inited = false;
@@ -166,7 +166,7 @@ export class InpageProvider extends Emitter {
   }: RequestArguments): Promise<unknown> {
     switch (method) {
       case JsonRpcMethod.web3_clientVersion:
-        return `Wigwam/v${process.env.VERSION}`;
+        return `Magiccraft/v${process.env.VERSION}`;
 
       case JsonRpcMethod.eth_chainId:
         return this.chainId!;

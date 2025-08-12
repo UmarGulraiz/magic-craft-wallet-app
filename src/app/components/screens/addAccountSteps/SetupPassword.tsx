@@ -3,7 +3,6 @@ import { useSetAtom } from "jotai";
 import { Field, Form } from "react-final-form";
 import { FORM_ERROR, FormApi } from "final-form";
 import { nanoid } from "nanoid";
-import classNames from "clsx";
 import { storage } from "lib/ext/storage";
 
 import { AddAccountParams, SeedPharse } from "core/types";
@@ -23,7 +22,6 @@ import { addAccountModalAtom } from "app/atoms";
 import { useSteps } from "app/hooks/steps";
 import AddAccountContinueButton from "app/components/blocks/AddAccountContinueButton";
 import AddAccountHeader from "app/components/blocks/AddAccountHeader";
-import AcceptCheckbox from "app/components/blocks/AcceptCheckbox";
 import PasswordField from "app/components/elements/PasswordField";
 import PasswordValidationField from "app/components/elements/PasswordValidationField";
 
@@ -96,12 +94,7 @@ const SetupPassword = memo(() => {
         })}
         decorators={[focusOnErrors]}
         destroyOnUnregister
-        render={({
-          handleSubmit,
-          submitting,
-          modifiedSinceLastSubmit,
-          submitError,
-        }) => (
+        render={({ handleSubmit, submitting }) => (
           <form
             onSubmit={handleSubmit}
             className="flex flex-col max-w-[27.5rem] mx-auto"
@@ -135,69 +128,6 @@ const SetupPassword = memo(() => {
                     errorMessage={meta.error}
                     className="w-full"
                     {...input}
-                  />
-                )}
-              </Field>
-
-              <Field
-                name="terms"
-                format={(v: string) => Boolean(v)}
-                validate={required}
-              >
-                {({ input, meta }) => (
-                  <AcceptCheckbox
-                    {...input}
-                    title="Accept terms"
-                    description={
-                      <>
-                        I have read and agree to the
-                        <br />
-                        <a
-                          href="https://wigwam.app/terms"
-                          target="_blank"
-                          rel="nofollow noreferrer"
-                          className="text-brand-main underline"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Terms of Usage
-                        </a>
-                      </>
-                    }
-                    error={
-                      (!modifiedSinceLastSubmit && submitError) ||
-                      (meta.touched && meta.error)
-                    }
-                    errorMessage={
-                      meta.error || (!modifiedSinceLastSubmit && submitError)
-                    }
-                    containerClassName={classNames("mt-6 w-full")}
-                  />
-                )}
-              </Field>
-
-              <Field name="analytics" format={(v: string) => Boolean(v)}>
-                {({ input, meta }) => (
-                  <AcceptCheckbox
-                    {...input}
-                    title="Analytics"
-                    description={
-                      <>
-                        Help us make Wigwam better.
-                        <br />I agree to the{" "}
-                        <a
-                          href="https://wigwam.app/privacy"
-                          target="_blank"
-                          rel="nofollow noreferrer"
-                          className="text-brand-main underline"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          Anonymous Tracking
-                        </a>
-                      </>
-                    }
-                    error={meta.touched && meta.error}
-                    errorMessage={meta.error}
-                    containerClassName="w-full mb-6 mt-4"
                   />
                 )}
               </Field>

@@ -1,17 +1,16 @@
-import { InputAdornment, Skeleton } from '@mui/material';
-import Big from 'big.js';
-import { useFormContext, useWatch, useController } from 'react-hook-form';
-import { useTranslation } from 'react-i18next';
+import { InputAdornment, Skeleton } from "@mui/material";
+import Big from "big.js";
+import { useFormContext, useWatch, useController } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import {
   useChains,
   useGasRecommendation,
   useTokenAddressBalance,
-} from '../../hooks';
-import type { FormTypeProps } from '../../providers';
-import { FormKeyHelper } from '../../providers';
-import { formatTokenAmount, formatInputAmount } from '../../utils';
-import { Button } from './AmountInputAdornment.style';
-
+} from "../../hooks";
+import type { FormTypeProps } from "../../providers";
+import { FormKeyHelper } from "../../providers";
+import { formatTokenAmount, formatInputAmount } from "../../utils";
+import { Button } from "./AmountInputAdornment.style";
 
 export const AmountInputEndAdornment = ({ formType }: FormTypeProps) => {
   const { t } = useTranslation();
@@ -35,7 +34,15 @@ export const AmountInputEndAdornment = ({ formType }: FormTypeProps) => {
   const handleValue = (percentage: number) => {
     const chain = getChainById(chainId);
     if (token?.amount) {
-      let maxAmount: any = percentage === 100 ? token?.amount : new Big((Big(token?.amount).div(100).mul(percentage)).toFixed(token.decimals/2, 3));
+      let maxAmount: any =
+        percentage === 100
+          ? token?.amount
+          : new Big(
+              Big(token?.amount)
+                .div(100)
+                .mul(percentage)
+                .toFixed(token.decimals / 2, 3),
+            );
 
       if (
         chain?.nativeToken.address === tokenAddress &&
@@ -52,9 +59,13 @@ export const AmountInputEndAdornment = ({ formType }: FormTypeProps) => {
           );
         }
       }
-      
-      const formattedAmount = formatInputAmount(String(maxAmount), token?.decimals, true);
-      onChange(formattedAmount)
+
+      const formattedAmount = formatInputAmount(
+        String(maxAmount),
+        token?.decimals,
+        true,
+      );
+      onChange(formattedAmount);
     }
     // setValue('fromAmount', maxAmount || '', {
     //   shouldTouch: true,
@@ -70,11 +81,49 @@ export const AmountInputEndAdornment = ({ formType }: FormTypeProps) => {
           height={24}
           sx={{ borderRadius: 0.5 }}
         />
-      ) : formType === 'from' && token?.amount ? (
+      ) : formType === "from" && token?.amount ? (
         <>
-        <Button onClick={() => handleValue(25)} className='hoverBlack' sx={{background: '#2C3036', borderRadius: '4px', padding: '6px', color: '#fff', marginRight: '8px', fontSize: '12px'}}>25%</Button>
-        <Button onClick={() => handleValue(50)} className='hoverBlack' sx={{background: '#2C3036', borderRadius: '4px', padding: '6px', color: '#fff', marginRight: '8px', fontSize: '12px'}}>50%</Button>
-        <Button onClick={() => handleValue(100)} className='hoverBlack' sx={{background: '#2C3036', borderRadius: '4px', padding: '6px', color: '#fff', fontSize: '12px'}}>{t('button.max')}</Button>
+          <Button
+            onClick={() => handleValue(25)}
+            className="hoverBlack"
+            sx={{
+              background: "#2C3036",
+              borderRadius: "4px",
+              padding: "6px",
+              color: "#fff",
+              marginRight: "8px",
+              fontSize: "12px",
+            }}
+          >
+            25%
+          </Button>
+          <Button
+            onClick={() => handleValue(50)}
+            className="hoverBlack"
+            sx={{
+              background: "#2C3036",
+              borderRadius: "4px",
+              padding: "6px",
+              color: "#fff",
+              marginRight: "8px",
+              fontSize: "12px",
+            }}
+          >
+            50%
+          </Button>
+          <Button
+            onClick={() => handleValue(100)}
+            className="hoverBlack"
+            sx={{
+              background: "#2C3036",
+              borderRadius: "4px",
+              padding: "6px",
+              color: "#fff",
+              fontSize: "12px",
+            }}
+          >
+            {t("button.max")}
+          </Button>
         </>
       ) : null}
     </InputAdornment>

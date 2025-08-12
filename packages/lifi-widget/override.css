@@ -3,15 +3,15 @@
 }
 
 .MuiBox-root.withHover:hover {
-  background: #323b41 !important;
+  background: #2a2b4f !important;
 }
 
 .withHover:hover {
-  background: #323b41 !important;
+  background: #2a2b4f !important;
 }
 
 .MuiBox-root.withHoverGray:hover {
-  background: #22262a !important;
+  background: #1a1b2f !important;
 }
 
 .MuiTypography-body1 {
@@ -28,7 +28,7 @@
 }
 
 ::-webkit-scrollbar {
-  background: #181a1f;
+  background: #1a1b2f;
   width: 5px;
   position: absolute;
   right: 0;
@@ -43,16 +43,16 @@
 }
 
 div::-webkit-scrollbar-thumb {
-  background: rgb(204 249 255 / 0.1);
+  background: rgb(241 196 15 / 0.2);
   border-radius: 3px;
-  border: 1px solid rgb(39, 44, 48);
+  border: 1px solid rgb(110, 75, 158);
 }
 
 .switcher {
   width: 48px;
   height: 28px;
   border-radius: 20px;
-  background: #2b3037;
+  background: #2a2b4f;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -61,26 +61,26 @@ div::-webkit-scrollbar-thumb {
 }
 
 .switcher.active {
-  background: #75db65;
+  background: #f1c40f;
   justify-content: flex-end;
 }
 
 .switcher .point {
   width: 20px;
   height: 20px;
-  background: #737c88;
+  background: #6e4b9e;
   border-radius: 100%;
   margin: 0 5px;
 }
 
 .switcher.active .point {
-  background: #0d1311;
+  background: #1a1b2f;
 }
 
 .routeEllips {
   width: 24px;
   height: 24px;
-  background: #737c88;
+  background: #6e4b9e;
   border-radius: 100%;
   margin-right: 12px;
   position: relative;
@@ -94,7 +94,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 .routeEllips.selected {
-  background: #80ef6e;
+  background: #f1c40f;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,11 +118,11 @@ div::-webkit-scrollbar-thumb {
 }
 
 .txStatus.complete {
-  background: #80ef6e;
+  background: #f1c40f;
 }
 
 .txStatus.progress {
-  background: #ffcf26;
+  background: #6e4b9e;
 }
 
 .txStatus.failed {

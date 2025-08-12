@@ -15,22 +15,18 @@ a {
 
 .brandbg-main,
 .brandbg-popup {
-  /* background: radial-gradient(
+  /* MagicCraft Theme Background */
+  background: radial-gradient(
       30.26% 62.3% at 93.12% 25.55%,
-      rgba(90, 4, 20, 0.056) 0%,
-      rgba(13, 14, 29, 0) 100%
+      rgba(110, 75, 158, 0.15) 0%,
+      rgba(26, 27, 47, 0) 100%
     ),
     radial-gradient(
       43.61% 135.15% at 0% 77.51%,
-      rgba(4, 73, 88, 0.1) 0%,
-      rgba(13, 14, 29, 0) 100%
+      rgba(241, 196, 15, 0.08) 0%,
+      rgba(26, 27, 47, 0) 100%
     ),
-    #181A1F; */
-
-  /* @apply bg-gray-900; */
-  /* background-color: #151918; #101918; */
-  /* background-color: #212121; */
-  @apply bg-brand-darkbg;
+    #1a1b2f;
 }
 
 .brandbg-main-fallback,
@@ -67,11 +63,11 @@ a {
 .brandbg-secondary-modal {
   background: radial-gradient(
       33.62% 91.96% at 64.57% 13.41%,
-      #26273a 0%,
-      rgba(19, 20, 39, 0) 78.62%
+      #6e4b9e 0%,
+      rgba(26, 27, 47, 0) 78.62%
     ),
-    linear-gradient(115.9deg, #1e2133 7.71%, #191b2f 44.05%, #131427 66.44%);
-  border: 1px solid rgba(204, 214, 255, 0.15);
+    linear-gradient(115.9deg, #2a2b4f 7.71%, #1a1b2f 44.05%, #0f1020 66.44%);
+  border: 1px solid rgba(241, 196, 15, 0.2);
 }
 
 /**
@@ -90,24 +86,24 @@ a {
   }
 
   .styled-icon {
-    --color-1: #696c73;
-    --color-2: #2a2d35;
-    --color-3: #272a32;
-    --color-4: #2a2d35;
+    --color-1: #6e4b9e;
+    --color-2: #2a2b4f;
+    --color-3: #1a1b2f;
+    --color-4: #2a2b4f;
   }
 
   .styled-icon--hover {
-    --color-1: #949cae;
-    --color-2: #373b45;
-    --color-3: #272a32;
-    --color-4: #373b45;
+    --color-1: #f1c40f;
+    --color-2: #6e4b9e;
+    --color-3: #1a1b2f;
+    --color-4: #6e4b9e;
   }
 
   .styled-icon--active {
-    --color-1: theme("colors.brand.redone");
-    --color-2: #373b45;
-    --color-3: #373b45;
-    --color-4: #696c73;
+    --color-1: #f1c40f;
+    --color-2: #6e4b9e;
+    --color-3: #6e4b9e;
+    --color-4: #f1c40f;
   }
 
   .styled-icon--pending {
@@ -138,7 +134,7 @@ a {
       stroke: var(--color-1);
     }
     50% {
-      stroke: #d99e2e;
+      stroke: #f1c40f;
     }
     100% {
       stroke: var(--color-1);
@@ -150,7 +146,7 @@ a {
       fill: var(--color-1);
     }
     50% {
-      fill: #d99e2e;
+      fill: #f1c40f;
     }
     100% {
       fill: var(--color-1);
@@ -166,7 +162,7 @@ a {
       color: inherit;
     }
     50% {
-      color: #d99e2e;
+      color: #f1c40f;
     }
     100% {
       color: inherit;
@@ -257,13 +253,13 @@ div[data-radix-scroll-area-viewport].viewportBlock > div {
 
 @keyframes brand-shadow-pulse {
   0% {
-    box-shadow: 0 5px 25px rgba(255, 0, 45, 0);
+    box-shadow: 0 5px 25px rgba(241, 196, 15, 0);
   }
   50% {
-    box-shadow: 0 5px 25px rgba(255, 0, 45, 0.5);
+    box-shadow: 0 5px 25px rgba(241, 196, 15, 0.5);
   }
   100% {
-    box-shadow: 0 5px 25px rgba(255, 0, 45, 0);
+    box-shadow: 0 5px 25px rgba(241, 196, 15, 0);
   }
 }
 
@@ -358,7 +354,7 @@ div[data-radix-scroll-area-viewport].viewportBlock > div {
   transform: rotateZ(45deg);
   perspective: 1000px;
   border-radius: 50%;
-  color: #f8fcfd;
+  color: #f1c40f;
 }
 .atom-spinner:before,
 .atom-spinner:after {
@@ -377,7 +373,7 @@ div[data-radix-scroll-area-viewport].viewportBlock > div {
   animation-delay: -0.4s;
 }
 .atom-spinner:after {
-  color: rgb(128, 239, 110);
+  color: #6e4b9e;
   transform: rotateY(70deg);
 }
 
