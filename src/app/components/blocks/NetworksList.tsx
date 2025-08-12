@@ -98,9 +98,7 @@ const NetworksList: FC = () => {
               />
             ))}
           </div>
-          <span className="truncate min-w-0">
-            {dropdownNetworks.length} more
-          </span>
+          <span className="truncate min-w-0">Networks</span>
         </div>
       </NetworksButton>
     </div>
