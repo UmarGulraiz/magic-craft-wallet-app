@@ -1,8 +1,6 @@
 import { memo } from "react";
 import classNames from "clsx";
 
-import { ReactComponent as MediaFallbackIcon } from "app/icons/media-fallback.svg";
-
 import Delay from "../misc/Delay";
 
 type NoNftStateProps = {
@@ -23,8 +21,7 @@ const NoNftState = memo<NoNftStateProps>(({ syncing, className }) => (
     <Delay ms={500}>
       {!syncing ? (
         <div className="mt-4 flex flex-col items-center animate-bootfadein">
-          <MediaFallbackIcon className="w-32 h-auto" />
-          <span>There are no NFTs yet</span>
+          <span></span>
         </div>
       ) : (
         <div className="mt-8 atom-spinner w-8 h-8" />

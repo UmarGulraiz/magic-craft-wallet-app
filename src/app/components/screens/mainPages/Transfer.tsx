@@ -8,7 +8,6 @@ import ScrollAreaContainer from "app/components/elements/ScrollAreaContainer";
 import NetworksList from "app/components/blocks/NetworksList";
 import SecondaryTabs from "app/components/blocks/SecondaryTabs";
 import { ReactComponent as AssetIcon } from "app/icons/transfer-asset.svg";
-import { ReactComponent as NFTIcon } from "app/icons/transfer-nft.svg";
 
 import TransferTab from "./Transfer.Tab";
 
@@ -54,11 +53,5 @@ const tabsContent = [
     title: "Token",
     Icon: AssetIcon,
     desc: "Send gas tokens or other fungible coins such as ERC20.",
-  },
-  {
-    route: { page: "transfer", transfer: TransferTabEnum.Nft },
-    title: "NFT",
-    Icon: NFTIcon,
-    desc: "Send NFTs or other non-fungible tokens such as ERC721 or ERC1155.",
   },
 ];

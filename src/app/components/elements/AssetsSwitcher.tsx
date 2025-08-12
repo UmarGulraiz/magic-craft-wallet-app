@@ -38,12 +38,6 @@ const AssetsSwitcher: FC<AssetsSwitcherProps> = ({
       >
         Tokens
       </SwitchOption>
-      <SwitchOption
-        theme={theme}
-        className={classNames(checked && "font-bold")}
-      >
-        NFTs
-      </SwitchOption>
       <Switch.Thumb
         className={classNames(
           "absolute",

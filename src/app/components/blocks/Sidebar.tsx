@@ -17,11 +17,7 @@ const Sidebar: FC = () => {
 
   return (
     <nav
-      className={classNames(
-        "pr-6",
-        "border-r border-brand-main/[.07]",
-        "flex flex-col",
-      )}
+      className={classNames("pr-6", "border-r border-white", "flex flex-col")}
     >
       <Link
         to={{ page: Page.Default }}

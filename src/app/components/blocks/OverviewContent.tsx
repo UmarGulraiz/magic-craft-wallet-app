@@ -51,10 +51,17 @@ const TokenExplorer: FC = () => {
 
   return (
     <>
-      <div
+      {/* <div
         className={classNames(
           "w-[26rem] min-w-[26rem] pr-6 mt-6",
           "border-r border-brand-main/[.07]",
+          "flex flex-col",
+        )}
+      > */}
+      <div
+        className={classNames(
+          "w-[26rem] min-w-[26rem] pr-6 mt-6",
+          "border-r border-white", // Solid white right border
           "flex flex-col",
         )}
       >
