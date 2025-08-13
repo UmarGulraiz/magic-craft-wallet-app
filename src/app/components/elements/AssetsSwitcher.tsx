@@ -23,6 +23,8 @@ const AssetsSwitcher: FC<AssetsSwitcherProps> = ({
         "flex items-center",
         theme === "large" && "rounded-[.875rem] after:rounded-[.875rem] gap-2",
         theme === "small" && "rounded-[.625rem] after:rounded-[.625rem] gap-1",
+        "transition-transform translate-x-0 translate-y-0",
+        "hover:translate-x-0 hover:-translate-y-2",
         "bg-black/10",
         "transition-colors",
         "hover:bg-brand-main/[.05] focus-visible:bg-brand-main/[.05]",

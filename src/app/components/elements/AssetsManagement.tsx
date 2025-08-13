@@ -238,6 +238,8 @@ const ManageButton: FC<IconedButtonProps & { size?: "small" | "large" }> = ({
   <IconedButton
     className={classNames(
       "rounded-lg",
+      "transition-transform translate-x-0 translate-y-0",
+      "hover:translate-x-0 hover:-translate-y-2",
       size === "large"
         ? "!w-11 min-w-[2.75rem] !h-11"
         : "!w-10 !h-10 min-w-[2.5rem]",

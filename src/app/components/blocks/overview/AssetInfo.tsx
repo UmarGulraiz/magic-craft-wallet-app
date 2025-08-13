@@ -251,7 +251,7 @@ const AssetInfo: FC = () => {
                 }}
                 merge
                 theme="secondary"
-                className="grow !py-2 !min-w-0 text-sm"
+                className="grow !py-2 !min-w-0 text-sm translateX(20.25px) translateY(-20.25px)"
                 disabled={!showBuyButton}
                 title={showBuyButton ? undefined : "Coming soon"}
                 onClick={() => {

@@ -3,6 +3,7 @@ import classNames from "clsx";
 import { useAtomValue } from "jotai";
 
 import { WalletStatus } from "core/types";
+import magicAnimation from "./../../../../../public/animations/magic.json"; // path to your JSON
 
 import { walletStateAtom } from "app/atoms";
 import { useSteps } from "app/hooks/steps";
@@ -15,6 +16,7 @@ import { ReactComponent as SuccessGreen } from "app/icons/success-green.svg";
 
 import ConfirmAccounts from "./ConfirmAccounts";
 import LedgerScanModal from "./shared/LedgerScanModal";
+import Lottie from "lottie-react";
 
 const AddAccountInitial = memo(() => {
   const { hasSeedPhrase } = useAtomValue(walletStateAtom);
@@ -77,16 +79,30 @@ const ChooseAddAccountWay = memo<{ onLedgerOpened?: () => void }>(
 
     return (
       <>
-        <AddAccountHeader
-          className="mb-12"
-          description={
-            isInitialWallet
-              ? "Join the future of finance with Magiccraft"
-              : null
-          }
-        >
-          {isInitialWallet ? "Let’s start your journey" : "Add more wallets"}
-        </AddAccountHeader>
+        <div className="flex items-center gap-2 mb-12">
+          <AddAccountHeader
+            description={
+              isInitialWallet
+                ? "Join the future of finance with Magiccraft"
+                : null
+            }
+          >
+            {isInitialWallet ? "Let’s start your journey" : "Add more wallets"}
+          </AddAccountHeader>
+
+          <div
+            className="absolute bottom-0 left-0"
+            style={{ width: 300, height: 300 }}
+          >
+            <Lottie animationData={magicAnimation} loop={true} />
+          </div>
+          <div
+            className="absolute bottom-0 right-0"
+            style={{ width: 300, height: 300, transform: "scaleX(-1)" }}
+          >
+            <Lottie animationData={magicAnimation} loop={true} />
+          </div>
+        </div>
 
         <div
           className={classNames(

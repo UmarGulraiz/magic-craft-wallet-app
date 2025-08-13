@@ -157,6 +157,7 @@ const AddAccountModal = memo(() => {
                 className={classNames(
                   "w-full h-full",
                   "rounded-[2.5rem]",
+                  "relative",
                   "border border-brand-light/5",
                   !isInitial && [
                     "brandbg-large-modal",

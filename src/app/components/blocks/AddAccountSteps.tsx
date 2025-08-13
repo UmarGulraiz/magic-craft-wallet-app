@@ -1,15 +1,10 @@
-import { memo, Suspense, useCallback, useRef } from "react";
+import { memo, Suspense, useRef } from "react";
 import { useAtomValue } from "jotai";
 import classNames from "clsx";
 
 import { AddAccountStep } from "app/nav";
 import { addAccountStepAtom } from "app/atoms";
 import { AllSteps, StepsProvider } from "app/hooks/steps";
-import { useDialog } from "app/hooks/dialog";
-
-import { ReactComponent as SupportIcon } from "app/icons/chat.svg";
-
-import * as SupportAlert from "app/components/elements/SupportAlert";
 
 import AddAccountInitial from "../screens/addAccountSteps/AddAccountInitial";
 import CreateSeedPhrase from "../screens/addAccountSteps/CreateSeedPhrase";
@@ -21,7 +16,6 @@ import AddWatchOnlyAccount from "../screens/addAccountSteps/AddWatchOnlyAccount"
 import ConfirmAccounts from "../screens/addAccountSteps/ConfirmAccounts";
 import EditAccounts from "../screens/addAccountSteps/EditAccounts";
 import SetupPassword from "../screens/addAccountSteps/SetupPassword";
-import Button from "../elements/Button";
 
 const ADD_ACCOUNT_STEPS: AllSteps<AddAccountStep> = [
   [AddAccountStep.AddAccountInitial, () => <AddAccountInitial />],
@@ -38,13 +32,8 @@ const ADD_ACCOUNT_STEPS: AllSteps<AddAccountStep> = [
 ];
 
 const AddAccountStepsNext = memo(() => {
-  const { alert } = useDialog();
   const rootRef = useRef<HTMLDivElement>(null);
   const accountStep = useAtomValue(addAccountStepAtom);
-
-  const handleSupport = useCallback(() => {
-    alert({ title: <SupportAlert.Title />, content: <SupportAlert.Content /> });
-  }, [alert]);
 
   return (
     <div
@@ -64,14 +53,6 @@ const AddAccountStepsNext = memo(() => {
       >
         {({ children }) => <Suspense fallback={null}>{children}</Suspense>}
       </StepsProvider>
-      <Button
-        theme="clean"
-        className="absolute right-8 bottom-5 z-20 font-semibold hidden sm:block"
-        onClick={handleSupport}
-      >
-        <SupportIcon className="mr-2" />
-        Support
-      </Button>
     </div>
   );
 });

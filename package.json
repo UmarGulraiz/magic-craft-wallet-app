@@ -78,6 +78,7 @@
     "inter-ui": "4.0.2",
     "jotai": "2.12.1",
     "kdbxweb": "2.1.1",
+    "lottie-react": "^2.4.1",
     "mem": "9.0.2",
     "memoize-one": "6.0.0",
     "multiformats": "13.3.2",

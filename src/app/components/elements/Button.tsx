@@ -133,6 +133,8 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
       relativeClassName,
       "overflow-hidden",
       "py-3 px-4",
+      "transition-transform translate-x-0 translate-y-0",
+      "hover:translate-x-0 hover:-translate-y-2",
       theme !== "clean" && "min-w-[10rem]",
       !(theme === "primary" || theme === "primary-reverse") &&
         "text-brand-light",

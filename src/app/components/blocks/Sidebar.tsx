@@ -23,6 +23,8 @@ const Sidebar: FC = () => {
         to={{ page: Page.Default }}
         merge={["token"]}
         className={classNames(
+          "transition-transform translate-x-0 translate-y-0",
+          "hover:translate-x-2 hover:-translate-y-2",
           "mb-5 py-5",
           "border-b border-brand-main/[.07]",
           "flex items-center",
@@ -81,6 +83,8 @@ const SidebarBlock: FC<SidebarBlockProps> = ({ links, className }) => {
               key={label}
               onClick={handleClick}
               className={classNames(
+                "transition-transform translate-x-0 translate-y-0",
+                "hover:translate-x-2 hover:-translate-y-2",
                 "group",
                 "text-base !font-bold text-brand-light/80",
                 "w-48 !py-2 !px-3 !mb-2",
@@ -109,6 +113,8 @@ const SidebarBlock: FC<SidebarBlockProps> = ({ links, className }) => {
             }}
             merge={withTokenSlug(page, tokenSlug) ? ["token"] : undefined}
             className={classNames(
+              "transition-transform translate-x-0 translate-y-0",
+              "hover:translate-x-2 hover:-translate-y-2",
               "group",
               "text-base font-bold",
               "w-48 py-2 px-3 mb-2",
