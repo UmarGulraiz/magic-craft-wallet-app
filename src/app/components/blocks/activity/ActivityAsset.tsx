@@ -952,7 +952,7 @@ const TxOptionsDropdown = memo(
                       "-mt-2 mb-2 -ml-[0.5rem]",
                       "w-[calc(100%+[0.5rem)]",
                       "py-2 pr-2",
-                      "bg-black/10 border border-white/5 rounded-lg",
+                      "bg-black/10 border border-light/5 rounded-lg",
                       "flex items-start",
                     )}
                   >
@@ -1164,7 +1164,7 @@ const TxOptionsDropdown = memo(
           "bg-brand-darkgray",
           "rounded-md",
           "overflow-hidden truncate",
-          "border border-white/5",
+          "border border-light/5",
           "px-1 py-2",
           "z-[1]",
         )}

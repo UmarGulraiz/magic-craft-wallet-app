@@ -33,7 +33,7 @@ export async function uploadProfile() {
   uploadField.type = "file";
   uploadField.accept = ".wigwam";
   uploadField.className = `mb-6 text-sm text-slate-500
-  p-4 border border-white rounded-md cursor-pointer
+  p-4 border border-light/5 rounded-md cursor-pointer
   file:mr-4 file:py-2 file:px-4
   file:rounded-full file:border-0
   file:text-sm file:font-semibold

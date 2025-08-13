@@ -245,7 +245,7 @@ const NavToolbarButton: FC<NavToolbarButtonProps> = ({
     <span className="flex items-center">
       {label}
       {badge && badge > 0 ? (
-        <span className="bg-brand-darkgray border border-white/5 text-white text-[.625rem] leading-none !text-brand-light/80 rounded py-0.5 px-1 ml-1 mt-[.0625rem]">
+        <span className="bg-brand-darkgray border border-light/5 text-white text-[.625rem] leading-none !text-brand-light/80 rounded py-0.5 px-1 ml-1 mt-[.0625rem]">
           +{badge}
         </span>
       ) : null}
