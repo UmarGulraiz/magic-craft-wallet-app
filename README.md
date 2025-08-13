@@ -73,12 +73,6 @@ You can also find documentation for specific modules within the source code.
 
 > Requires: [`Node.js >=18.12.0`](https://nodejs.org) and [`Yarn ^1`](https://yarnpkg.com)
 
-### Get the source code
-
-```bash
-git clone git@github.com:wigwamapp/local-wigwam.git wigwam
-```
-
 ### Install app dependencies
 
 ```bash

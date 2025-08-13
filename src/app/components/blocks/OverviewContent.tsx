@@ -2,7 +2,6 @@ import {
   FC,
   memo,
   ReactNode,
-  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -32,8 +31,6 @@ import NoNftState from "../blocks/tokenList/NoNftState";
 import NftCard from "../blocks/tokenList/NftCard";
 
 import AssetCard from "./overview/AssetCard";
-import AssetInfo from "./overview/AssetInfo";
-import NftInfo from "./overview/NftInfo";
 
 const OverviewContent: FC = () => (
   <div className="flex min-h-0 grow relative">
@@ -47,17 +44,9 @@ export default OverviewContent;
 
 const TokenExplorer: FC = () => {
   const tokenType = useAtomValue(tokenTypeAtom);
-  const tokenSlug = useAtomValue(tokenSlugAtom);
 
   return (
     <>
-      {/* <div
-        className={classNames(
-          "w-[26rem] min-w-[26rem] pr-6 mt-6",
-          "border-r border-brand-main/[.07]",
-          "flex flex-col",
-        )}
-      > */}
       <div
         className={classNames(
           "w-[26rem] min-w-[26rem] pr-6 mt-6",
@@ -67,11 +56,6 @@ const TokenExplorer: FC = () => {
       >
         <TokenList key={tokenType} tokenType={tokenType} />
       </div>
-
-      <Suspense fallback={null}>
-        {tokenSlug &&
-          (tokenType === TokenType.Asset ? <AssetInfo /> : <NftInfo />)}
-      </Suspense>
     </>
   );
 };
@@ -119,7 +103,6 @@ const TokenList = memo<{ tokenType: TokenType }>(({ tokenType }) => {
     [mode, searchValueIsAddress, tokensPure],
   );
 
-  // A little hack to avoid using `manageModeEnabled` dependency
   const manageModeEnabledRef = useRef<boolean>();
   if (manageModeEnabledRef.current !== manageModeEnabled) {
     manageModeEnabledRef.current = manageModeEnabled;
