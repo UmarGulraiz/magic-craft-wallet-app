@@ -38,8 +38,8 @@ const NetworksList: FC = () => {
   }, [allNetworksPure, balancesMap]);
 
   return (
-    <div className="flex gap-3 py-4 border-b border-white min-h-[6.2rem]">
-      <NetworksButton className="!w-1/4">
+    <div className="flex gap-3 py-4 border border-brand-light/5 min-h-[6.2rem]">
+      <NetworksButton className="!w-1/4 ml-4">
         <div className="flex items-center gap-2">
           <div className="flex items-center">
             {allNetworks.slice(0, 3).map((network, index) => (

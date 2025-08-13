@@ -10,7 +10,7 @@ const Menu: FC = () => {
   const isSyncing = useIsSyncing();
 
   return (
-    <div className="flex items-center py-2 border-b border-white">
+    <div className="flex items-center py-2 border border-brand-light/5">
       <Suspense>
         <TotalBalance />
       </Suspense>
